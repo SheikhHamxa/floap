@@ -1,16 +1,14 @@
 
-from django.shortcuts import render
-
 from rest_framework import generics, permissions
 
 from .permissions import IsOwnerOrReadOnly
-
-from .models import Package, PackageStatus, PackageRates, PackageBilling
-from .serializations import PackageSerializer, PackageStatusSerializer, PackageRatesSerializer, PackageBillingSerializer
+from .models import USer, UserType
+from .serializations import UserTypeSerializer
+from .serializations import USerSerializer
 
 """
-class PackageHighlight(generics.GenericAPIView):
-    queryset = Package.objects.all()
+class EmployeHighlight(generics.GenericAPIView):
+    queryset = Employe.objects.all()
     renderer_classes = (renderers.StaticHTMLRenderer,)
 
     def get(self, request, *args, **kwargs):
@@ -19,66 +17,118 @@ class PackageHighlight(generics.GenericAPIView):
 """
 
 
-class PackageList(generics.ListCreateAPIView):
-    queryset = Package.objects.all()
-    serializer_class = PackageSerializer
+class USerList(generics.ListCreateAPIView):
+    queryset = USer.objects.all()
+    serializer_class = USerSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class PackageDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Package.objects.all()
-    serializer_class = PackageSerializer
+class USerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = USer.objects.all()
+    serializer_class = USerSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
 
-class PackageStatusList(generics.ListCreateAPIView):
-    queryset = PackageStatus.objects.all()
-    serializer_class = PackageStatusSerializer
+class UserTypeList(generics.ListCreateAPIView):
+    queryset = UserType.objects.all()
+    serializer_class = UserTypeSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class PackageStatusDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PackageStatus.objects.all()
-    serializer_class = PackageStatusSerializer
+class UserTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserType.objects.all()
+    serializer_class = UserTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
+"""
+class SenderList(generics.ListCreateAPIView):
+    queryset = Sender.objects.all()
+    serializer_class = SenderSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+       serializer.save(owner=self.request.user)
+
+
+class SenderDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Sender.objects.all()
+    serializer_class = SenderSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
 
-class PackageRatesList(generics.ListCreateAPIView):
-    queryset = PackageRates.objects.all()
-    serializer_class = PackageRatesSerializer
+class ReceiverList(generics.ListCreateAPIView):
+    queryset = Receiver.objects.all()
+    serializer_class = ReceiverSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class PackageRatesDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PackageRates.objects.all()
-    serializer_class = PackageRatesSerializer
+class ReceiverDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Receiver.objects.all()
+    serializer_class = ReceiverSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
-
-
-class PackageBillingList(generics.ListCreateAPIView):
-    queryset = PackageBilling.objects.all()
-    serializer_class = PackageBillingSerializer
+"""
+"""
+class PostPersonList(generics.ListCreateAPIView):
+    queryset = PostPerson.objects.all()
+    serializer_class = PostPersonSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class PackageBillingDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PackageBilling.objects.all()
-    serializer_class = PackageBillingSerializer
+class PostPersonDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PostPerson.objects.all()
+    serializer_class = PostPersonSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
+
+class ManagerList(generics.ListCreateAPIView):
+    queryset = Manager.objects.all()
+    serializer_class = ManagerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class ManagerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Manager.objects.all()
+    serializer_class = ManagerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
+
+class StaffList(generics.ListCreateAPIView):
+    queryset = Staff.objects.all()
+    serializer_class = StaffSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class StaffDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Staff.objects.all()
+    serializer_class = StaffSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
+
+
+"""
