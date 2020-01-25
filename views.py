@@ -1,19 +1,16 @@
-from django.shortcuts import render
 
+from django.shortcuts import render
 
 from rest_framework import generics, permissions
 
+from .permissions import IsOwnerOrReadOnly
 
-from location.models import Franchise, LocationType
-from .permissions import IsOwnerOrReadOnly  # new
-
-from .models import Location
-from .serializations import LocationSerializer, LocationTypeSerializer
-from .serializations import FranchiseSerializer
+from .models import Package, PackageStatus, PackageRates, PackageBilling
+from .serializations import PackageSerializer, PackageStatusSerializer, PackageRatesSerializer, PackageBillingSerializer
 
 """
-class LocationHighlight(generics.GenericAPIView):
-    queryset = Location.objects.all()
+class PackageHighlight(generics.GenericAPIView):
+    queryset = Package.objects.all()
     renderer_classes = (renderers.StaticHTMLRenderer,)
 
     def get(self, request, *args, **kwargs):
@@ -22,67 +19,66 @@ class LocationHighlight(generics.GenericAPIView):
 """
 
 
-class LocationList(generics.ListCreateAPIView):
-    queryset = Location.objects.all()
-    serializer_class = LocationSerializer
+class PackageList(generics.ListCreateAPIView):
+    queryset = Package.objects.all()
+    serializer_class = PackageSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class LocationDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Location.objects.all()
-    serializer_class = LocationSerializer
+class PackageDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Package.objects.all()
+    serializer_class = PackageSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
 
-class LocationTypeList(generics.ListCreateAPIView):
-    queryset = LocationType.objects.all()
-    serializer_class = LocationTypeSerializer
+class PackageStatusList(generics.ListCreateAPIView):
+    queryset = PackageStatus.objects.all()
+    serializer_class = PackageStatusSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class LocationTypeDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = LocationType.objects.all()
-    serializer_class = LocationTypeSerializer
+class PackageStatusDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PackageStatus.objects.all()
+    serializer_class = PackageStatusSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
 
-""""
-
-class FranchiseTypeList(generics.ListAPIView):
-    queryset = FranchiseType.objects.all()
-    serializer_class = FranchiseTypeSerializer
+class PackageRatesList(generics.ListCreateAPIView):
+    queryset = PackageRates.objects.all()
+    serializer_class = PackageRatesSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class FranchiseTypeDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = FranchiseType.objects.all()
-    serializer_class = FranchiseTypeSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+class PackageRatesDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PackageRates.objects.all()
+    serializer_class = PackageRatesSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
 
-"""
 
-
-class FranchiseList(generics.ListCreateAPIView):
-    queryset = Franchise.objects.all()
-    serializer_class = FranchiseSerializer
+class PackageBillingList(generics.ListCreateAPIView):
+    queryset = PackageBilling.objects.all()
+    serializer_class = PackageBillingSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class FranchiseDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Franchise.objects.all()
-    serializer_class = FranchiseSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+class PackageBillingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PackageBilling.objects.all()
+    serializer_class = PackageBillingSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+

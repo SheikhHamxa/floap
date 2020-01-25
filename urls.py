@@ -1,17 +1,19 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from location import views
+from package import views
 
 urlpatterns = [
-
-    path('franchise', views.FranchiseList.as_view(),name='franchise-list'),
-    path('franchise/<int:pk>/' ,views.FranchiseDetail.as_view()),
-    path('location', views.LocationList.as_view(),name='location-list'),
-    path('location/<int:pk>/' ,views.LocationDetail.as_view()),
-    path('locationtype/', views.LocationTypeList.as_view(), name='locationtype-list'),
-    path('locationtype/<int:pk>/', views.LocationTypeDetail.as_view()),
+    path('package/', views.PackageList.as_view(),name='package-list'),
+    path('package/<int:pk>/', views.PackageDetail.as_view()),
+    # path('pkg/<int:pk>/highlight/', views.PackageHighlight.as_view(), name='package-highlight'),
+    path('packagestatus/', views.PackageStatusList.as_view(),name='packagestatus-list'),
+    path('packagestatus/<int:pk>/', views.PackageStatusDetail.as_view()),
+    # path('ps/<int:pk>/highlight/', views.PackageStatusHighlight.as_view(), name='packagestatus-highlight'),
+    path('packagerates/', views.PackageRatesList.as_view(),name='packagerates-list'),
+    path('packagerates/<int:pk>/', views.PackageRatesDetail.as_view()),
+    path('packagebill/', views.PackageBillingList.as_view(),name='packagebilling-list'),
+    path('packagebill/<int:pk>/', views.PackageBillingDetail.as_view()),
 
 ]
-
 
 urlpatterns = format_suffix_patterns(urlpatterns)

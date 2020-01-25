@@ -1,14 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Location
-from .models import LocationType
-from .models import Franchise
-
-
-admin.site.register(Location)
-
-admin.site.register(Franchise)
-
-
-admin.site.register(LocationType)
+from.models import Package, PackageStatus, PackageRates, PackageBilling
+admin.site.register(Package)
+admin.site.register(PackageStatus)
+admin.site.register(PackageRates)
+admin.site.register(PackageBilling)
